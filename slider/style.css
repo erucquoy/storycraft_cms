@@ -1,0 +1,15 @@
+
+a, a:visited {
+	color:blue;
+	text-decoration:none;
+}
+a:hover, a:active {
+	color:#000;
+	text-decoration:none;
+}
+
+.theme-default #slider {
+
+    width:580px; /* Make sure your images are the same size */
+    height:234px; /* Make sure your images are the same size */
+}
