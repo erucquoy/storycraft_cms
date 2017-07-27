@@ -1,0 +1,34 @@
+<article>
+								<div class="haut_article">
+									<h1>Nunc ultricies turpis at enim aliquam</h1>
+								</div>
+
+								<div class="milieu_article">
+									<img src="images/articles/1.png" alt="Minecraft Kit" />
+									<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+									Fusce aturna neque, ac gravida lacus. Donec suscipit neque eu mi ultrices facilisis nec non neque.
+									Nunc ultricies turpis at enim aliquam sedsodales orci mollis.
+									Nunc ultricies turpis at enim aliquam sedsodales orci mollis.
+									Aenean leo augue, cursus vitae accumsan in,dapibus pharetra diam.
+									Maecenas augue urna, volutpat iaculisrhoncus tincidunt, mollis sed nisi.
+									Maecenas augue urna, volutpat iaculisrhoncus tincidunt, mollis sed nisi.
+									Curabitur varius, lacus a auctor malesuada, nisi ligula dictum sapien, quis convallis felis enim eget arcu.
+									Aliquam placerat dapibus porta.
+									Integer dolor velit, tincidunt vitae facilisis non, pretium at ante.
+									Nunc pretium sagittis posuere.
+									Nulla ullamcorper, felis a accumsan dapibus, eros velit consectetur orci, id sodales odio quam quis dui.
+									Cras in augue mi.
+									Cras in augue mi.
+									</p>
+									<p>
+									Morbi lobortis sollicitudin felis, vitae ornare massa condimentum vel.
+									Aenean porttitor lobortis nibh, id faucibus ante viverra a.
+									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+									</p>
+								</div>
+								
+								<div class="bas_article">
+								<h1>Posté par Zigomar le 03/02/12 à 21h00</h1>
+								</div>
+</article>

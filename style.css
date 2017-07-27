@@ -1,0 +1,365 @@
+﻿/*Ce kit a été crée par Zigomar 
+pour toyou.fr et kitgraphique.net
+contactez moi : sav_toyou@live.fr*/
+
+/* Définition des polices personnalisées */
+
+@font-face
+{
+    font-family: 'minecraft';
+    src: url('polices/minecraft/minecraft.eot');
+    src: url('polices/minecraft/minecraft.eot?#iefix') format('embedded-opentype'),
+         url('polices/minecraft/minecraft.woff') format('woff'),
+         url('polices/minecraft/minecraft.ttf') format('truetype'),
+         url('polices/minecraft/minecraft.svg#BallparkWeiner') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Eléments principaux de la page */
+
+body
+{
+	background: url('images/fond_site.png') repeat-x;
+    font-family: Arial,'Trebuchet MS', sans-serif;
+    background-color: #bab8b8; /* CHANGEZ LA COULEUR DE CE FOND POUR CHANGE L' ASPECT DE CELUI CI ;) */
+	margin-top:-0.01em;
+}
+
+a img 
+{ 
+	border: none; 
+}
+
+#container
+{
+    width: 1000px;
+    margin: auto;
+}
+
+#header
+{
+	background: url('images/header.png') no-repeat;
+	width:1000px;
+	height:269px;
+	padding-top:4em;
+}
+
+#titre
+{
+    background: url('images/titre.png') no-repeat;
+	width:395px;
+	height:48px;
+	margin-left:-4em;
+	padding-top:2.3em;
+	padding-left:9.8em;
+}
+
+#titre h1
+{
+	font-family: minecraft,Arial,'Trebuchet MS', serif;
+	font-size:24px;
+	color:#ff8b03;
+}
+
+#centre
+{
+	margin-top:-3.3em;
+}
+
+#centre_img
+{
+	margin-left:-4.8em;
+	position:absolute;
+	margin-top:35%;
+	z-index:-1;
+}
+
+#haut_centre
+{
+	background: url('images/haut_centre.png') no-repeat;
+	width:1000px;
+	height:14px;
+	float:left;
+}
+
+#milieu_centre
+{
+	background: url('images/milieu_centre.png') repeat-y;
+	width:1000px;
+	height:100%;
+	padding-left:3.125em;
+	float:left;
+	padding-bottom:2em;
+}
+
+#stats_serv 
+{
+	font-family: minecraft,Arial,'Trebuchet MS', serif;
+	background: url('images/barre_stat.png') no-repeat;
+	width:900px;
+	height:46px;
+	padding-top:1.4em;
+	text-align:center;
+	color:#ffffff;
+	font-size:12px;
+}
+
+.color_serv
+{
+	color:#ff8b03;
+}
+
+.serv
+{
+	margin-left:2.500em;
+	margin-right:2.500em;
+}
+
+#bas_centre
+{
+	background: url('images/bas_centre.png') no-repeat;
+	width:1000px;
+	height:3px;
+	float:left;
+	margin-bottom:0em;
+}
+
+#gauche
+{
+	float:left;
+	width:600px;
+}
+
+#gauche_jslider
+{
+	background: url('images/fond_jslider.png') no-repeat;
+	height:278px;
+	padding-left:0.625em;
+	padding-top:0.625em;
+	margin-bottom:-0.625em;
+}
+
+.haut_article
+{
+	background: url('images/haut_article.png') no-repeat;
+	width:600px;
+	height:27px;
+	padding-left:0.625em;
+}
+
+.haut_article h1
+{
+	color:#ff8b03;
+	font-size:14px;
+	padding-top:5px;
+}
+
+.milieu_article
+{
+	background: url('images/milieu_article.png') repeat-y;
+	width:600px;
+	height:100%;
+	padding-left:0.625em;
+}
+
+.milieu_article img
+{
+	float: left; 
+	margin: 6px 6px 6px 0;
+	width:100px;
+	height:100px;
+}
+
+.milieu_article p
+{
+	width:580px;
+	color:#ffffff;
+	margin:0 0 0 0;
+	font-size:13px;
+	padding-top:3px;
+}
+
+.bas_article
+{
+	background: url('images/bas_article.png') no-repeat;
+	width:600px;
+	height:28px;
+	padding-left:0.625em;
+}
+
+.bas_article h1
+{
+	color:#ffffff;
+	float:right;
+	font-size:9px;
+	font-weight:bold;
+	padding-top:8px;
+	margin: 0 20px 0 0;
+}
+
+#pagination
+{
+	width:600px;
+	margin: 10px 0 0  150px ;
+}
+
+ul
+{
+    border:0; 
+    margin:0; 
+    padding:0;
+}
+
+#pagination li
+{
+    border:0; 
+    margin:0; 
+    padding:0;
+    font-size:11px;
+    list-style:none;
+    margin-right:2px;
+}
+
+#pagination a
+{
+    background:#7d7f7a;
+    border:solid 2px #ffffff;
+    margin-right:2px;
+}
+
+#pagination .precedent-off, #pagination .suivant-off 
+{
+    background:#7d7f7a;
+    border:solid 2px #ffffff;
+    color:#ffffff;
+    display:block;
+    float:left;
+    font-weight:bold;
+    margin-right:2px;
+    padding:3px 4px;
+}
+
+#pagination .suivant a, #pagination .precedent a 
+{
+    font-weight:bold;
+}
+
+#pagination .active
+{
+    background:#ff8b03;
+    color:#FFFFFF;
+    font-weight:bold;
+    display:block;
+    float:left;
+    padding:4px 6px;
+}
+
+#pagination a:link, #pagination a:visited 
+{
+    color:#ffffff;
+    display:block;
+    float:left;
+    padding:3px 6px;
+    text-decoration:none;
+}
+
+#pagination a:hover
+{
+    border:solid 2px #ff8b03;
+}
+
+.clear
+{
+	clear:both;
+}
+
+#droite
+{
+	float:left;
+	width:290px;
+	margin-left:10px;
+}
+
+.haut_droite
+{
+	background: url('images/haut_droite.png') no-repeat;
+	width:290px;
+	height:47px;
+	padding:0.625em 0 0 0.625em;
+}
+
+.titre_haut_droite
+{
+	background: url('images/titre_haut_droite.png') no-repeat;
+	width:270px;
+	height:27px;
+	margin-top:-1em;
+	
+}
+
+.titre_haut_droite h1
+{
+	font-family: 'Comic sans ms',Arial,'Trebuchet MS', serif;
+	font-size:16px;
+	color:#ff8b03;
+	padding-left:0.625em;
+}
+
+.milieu_droite
+{
+	background: url('images/milieu_droite.png') repeat-y;
+	width:290px;
+	height:100%;
+	margin-top:-0.625em;
+	padding-left:0.625em;
+}
+
+.milieu_droite li
+{
+	list-style-image: url('images/fleche.png');
+	margin-left:2em;
+	padding-bottom:0.5em;
+}
+
+.milieu_droite li a
+{
+	font-family: minecraft,Arial,'Trebuchet MS', serif;
+	font-size:12px;
+	color:#ffffff;
+}
+
+.milieu_droite li a:hover
+{
+	font-size:11px;
+	color:#ffffff;
+}
+
+.bas_droite
+{
+	background: url('images/bas_droite.png') no-repeat;
+	width:290px;
+	height:11px;
+	margin-bottom:0.900em;
+}
+
+#icones_social
+{
+	margin-left:1em;
+	
+}
+
+#footer
+{
+    width: 1000px;
+	font-size:11px;
+	color:#7d7f7a;
+	text-align:center;
+}
+
+#footer a
+{
+	font-size:11px;
+	font-weight:bold;
+	color:#ffffff;
+}

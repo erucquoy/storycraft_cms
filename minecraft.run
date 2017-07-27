@@ -1,0 +1,176 @@
+#!/bin/bash
+# /etc/init.d/minecraft
+# version 0.3.2 2011-01-27 (YYYY-MM-DD)
+
+### BEGIN INIT INFO
+# Provides:   minecraft
+# Required-Start: $local_fs $remote_fs
+# Required-Stop:  $local_fs $remote_fs
+# Should-Start:   $network
+# Should-Stop:    $network
+# Default-Start:  2 3 4 5
+# Default-Stop:   0 1 6
+# Short-Description:    Minecraft server
+# Description:    Starts the minecraft server
+### END INIT INFO
+
+#Settings
+SERVICE='craftbukkit.jar'
+USERNAME="root"
+MCPATH='/home/guiedo/minecraft/'
+BACKUPPATH='/home/guiedo/minecraft_backup/'
+
+ME=`whoami`
+as_user() {
+if [ "$ME" == "$USERNAME" ] ; then
+bash -c "$1"
+else
+su - $USERNAME -c "$1"
+fi
+}
+
+mc_start() {
+if ps ax | grep -v grep | grep -v -i SCREEN | grep $SERVICE > /dev/null
+then
+echo "Tried to start but $SERVICE was already running!"
+else
+echo "$SERVICE was not running... starting."
+cd $MCPATH
+as_user "cd $MCPATH && screen -dmS minecraft java -Xmx2048M -Xms128M -jar craftbukkit.jar nogui"
+sleep 7
+if ps ax | grep -v grep | grep -v -i SCREEN | grep $SERVICE > /dev/null
+then
+echo "$SERVICE is now running."
+else
+echo "Could not start $SERVICE."
+fi
+fi
+}
+
+mc_saveoff() {
+if ps ax | grep -v grep | grep -v -i SCREEN | grep $SERVICE > /dev/null
+then
+echo "$SERVICE is running... suspending saves"
+as_user "screen -p 0 -S minecraft -X eval 'stuff \"say SERVER BACKUP STARTING. Server going readonly...\"\015'"
+as_user "screen -p 0 -S minecraft -X eval 'stuff \"save-off\"\015'"
+as_user "screen -p 0 -S minecraft -X eval 'stuff \"save-all\"\015'"
+sync
+sleep 10
+else
+echo "$SERVICE was not running. Not suspending saves."
+fi
+}
+
+mc_saveon() {
+if ps ax | grep -v grep | grep -v -i SCREEN | grep $SERVICE > /dev/null
+then
+echo "$SERVICE is running... re-enabling saves"
+as_user "screen -p 0 -S minecraft -X eval 'stuff \"say Sauvegarde complète de la map. Attendez le prochain message pour continuer vos actions\"\015'"
+as_user "screen -p 0 -S minecraft -X eval 'stuff \"save-on\"\015'"
+as_user "screen -p 0 -S minecraft -X eval 'stuff \"say Sauvegarde terminée. Vous pouvez continuez...\"\015'"
+else
+echo "$SERVICE was not running. Not resuming saves."
+fi
+}
+
+mc_stop() {
+if ps ax | grep -v grep | grep -v -i SCREEN | grep $SERVICE > /dev/null
+then
+echo "$SERVICE is running... stopping."
+as_user "screen -p 0 -S minecraft -X eval 'stuff \"say Storycraft va redémarrer dans 10 secondes . Sauvegarde de la map...\"\015'"
+as_user "screen -p 0 -S minecraft -X eval 'stuff \"save-all\"\015'"
+sleep 10
+as_user "screen -p 0 -S minecraft -X eval 'stuff \"stop\"\015'"
+sleep 7
+else
+echo "$SERVICE was not running."
+fi
+if ps ax | grep -v grep | grep -v -i SCREEN | grep $SERVICE > /dev/null
+then
+echo "$SERVICE could not be shut down... still running."
+else
+echo "$SERVICE is shut down."
+fi
+}
+
+mc_backup() {
+if ps ax | grep -v grep | grep -v -i SCREEN | grep $SERVICE > /dev/null
+then
+#    echo "$SERVICE is running! Will not start backup."
+#  else
+echo "Backing up minecraft data"
+if [ -d $BACKUPPATH/world_`date "+%m.%d.%Y"` ]
+then
+for i in 1 2 3 4 5 6
+do
+if [ -d $BACKUPPATH/world_`date "+%m.%d.%Y"`-$i ]
+then
+continue
+else
+as_user "cd $MCPATH && cp -r world $BACKUPPATH/world_`date "+%m.%d.%Y"`-$i"
+break
+fi
+done
+else
+as_user "cd $MCPATH && cp -r world $BACKUPPATH/world_`date "+%m.%d.%Y"`"
+fi
+echo "Backing up the minecraft server executable"
+if [ -f "$BACKUPPATH/craftbukkit_`date "+%m.%d.%Y"`.jar" ]
+then
+for i in 1 2 3 4 5 6
+do
+if [ -f "$BACKUPPATH/craftbukkit_`date "+%m.%d.%Y"`-$i.jar" ]
+then
+continue
+else
+as_user "cd $MCPATH && cp craftbukkit.jar \"$BACKUPPATH/craftbukkit_`date "+%m.%d.%Y"`-$i.jar\""
+break
+fi
+done
+else
+as_user "cd $MCPATH && cp craftbukkit.jar \"$BACKUPPATH/craftbukkit_`date "+%m.%d.%Y"`.jar\""
+fi
+fi
+echo "Backup complete"
+}
+
+
+#Start-Stop here
+case "$1" in
+start)
+mc_start
+;;
+stop)
+mc_stop
+;;
+restart)
+mc_stop
+mc_start
+;;
+update)
+mc_stop
+mc_backup
+mc_update
+mc_start
+;;
+backup)
+mc_saveoff
+mc_backup
+mc_saveon
+;;
+status)
+if ps ax | grep -v grep | grep -v -i SCREEN | grep $SERVICE > /dev/null
+then
+echo "$SERVICE is running."
+else
+echo "$SERVICE is not running."
+fi
+;;
+
+*)
+echo "Usage: /etc/init.d/minecraft {start|stop|update|backup|status|restart}"
+exit 1
+;;
+esac
+
+exit 0
